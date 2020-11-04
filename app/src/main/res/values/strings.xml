@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">fruitKid</string>
+    <string name="et_nombre">¿Cómo te llamas?</string>
+    <string name="btnJugar">Jugar</string>
+</resources>
