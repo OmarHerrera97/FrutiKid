@@ -3,6 +3,8 @@ package com.uisrael.fruitkid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -54,6 +56,22 @@ public class MainActivity extends AppCompatActivity {
             iv_personaje.setImageResource(id);
         }
 
+        //Crear la conexion a SQLite
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "BD", null, 1);
+        SQLiteDatabase BD = admin.getWritableDatabase(); //Modo lectura BD
+
+        Cursor consulta = BD.rawQuery(
+                "select * from puntaje where score = (select max(score) from puntaje)", null);
+        if(consulta.moveToFirst()){
+            String tempNombre = consulta.getString(0);
+            String tempScore = consulta.getString(1);
+            tv_bestScore.setText("Record: "+tempScore + " de " +tempNombre);
+            BD.close();
+        }else{
+            BD.close();
+        }
+
+
         //Musica de fondo
         mp = MediaPlayer.create(this,R.raw.alphabet_song);
         mp.start();
@@ -75,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
             et_nombre.requestFocus();
             InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
             imm.showSoftInput(et_nombre, InputMethodManager.SHOW_IMPLICIT);
-
         }
     }
     @Override
