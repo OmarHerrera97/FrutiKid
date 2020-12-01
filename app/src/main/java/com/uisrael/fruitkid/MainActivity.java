@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Icono del ActionBar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+        getSupportActionBar().setIcon (R.mipmap.ic_launcher);
 
         //Codigo para generar el aleatorio
         int id;

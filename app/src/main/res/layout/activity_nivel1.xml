@@ -115,6 +115,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/fondoboton"
+        android:onClick="comparar"
         android:text="comprobar"
         android:textColor="#fff"
         android:textSize="14sp"

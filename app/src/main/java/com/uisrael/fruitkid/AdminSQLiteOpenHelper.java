@@ -15,7 +15,6 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase BD) {
         BD.execSQL("create table puntaje(nombre text, score int)");
-
     }
 
     @Override
