@@ -3,7 +3,6 @@ package com.uisrael.fruitkid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,7 +35,6 @@ public class activityNivel1 extends AppCompatActivity {
         ivAuno = findViewById(R.id.imageView_NumUno);
         ivAdos = findViewById(R.id.imageView_NumDos);
         etRespuesta = findViewById(R.id.editTextResultado);
-
         nombreJugador = getIntent().getStringExtra("jugador");
         tvNombre.setText("Jugador: "+nombreJugador);
 
@@ -97,11 +95,7 @@ public class activityNivel1 extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Debes escribir tu respuesta..", Toast.LENGTH_SHORT).show();
         }
-
     }
-
-
-
 
     public void numAleatorio(){
         if(score <=9){
