@@ -9,7 +9,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -70,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         }else{
             BD.close();
         }
-
 
         //Musica de fondo
         mp = MediaPlayer.create(this,R.raw.alphabet_song);
