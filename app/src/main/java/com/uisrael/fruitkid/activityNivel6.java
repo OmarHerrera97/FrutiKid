@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class activityNivel4 extends AppCompatActivity {
+public class activityNivel6 extends AppCompatActivity {
 
     private TextView tvNombre, tvScore;
     private ImageView ivAuno, ivAdos, ivVidas, ivSigno;
@@ -27,8 +27,8 @@ public class activityNivel4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nivel4);
-        Toast.makeText(this, "Nivel 4 - Sumas y Restas", Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_nivel6);
+        Toast.makeText(this, "Nivel 6 - Sumas, Restas y Multiplicaciones", Toast.LENGTH_SHORT).show();
         //crear los objetos y hacer un cast
         ivSigno = findViewById(R.id.imageView_signo);
         tvNombre = findViewById(R.id.textView_nombre);
@@ -115,18 +115,23 @@ public class activityNivel4 extends AppCompatActivity {
     }
 
     public void numAleatorio(){
-        if(score <= 39){
+        //Aqui modificamos ya que no hay mas niveles, score a criterio
+        if(score <= 70){
             numAleatorioUno = (int) (Math.random() * 10);
             numAleatorioDos = (int) (Math.random() * 10);
-            //Hacemos que si el numero esta entre 0 y 4 sumamos
-            if(numAleatorioUno >= 0 && numAleatorioUno <= 4){
+            //Hacemos que si el numero esta entre 0 y 3 sumamos
+            if(numAleatorioUno >= 0 && numAleatorioUno <= 3){
                 resultado = numAleatorioUno + numAleatorioDos;
                 ivSigno.setImageResource(R.drawable.adicion);
-            }else{
-                //Hacemos que si el numero esta entre 4 y 10 restamos
+            }else if(numAleatorioUno >= 4 && numAleatorioUno <= 7){
+                //Hacemos que si el numero esta entre 4 y 7 restamos
                 resultado = numAleatorioUno - numAleatorioDos;
                 ivSigno.setImageResource(R.drawable.resta);
+            }else{
+                resultado = numAleatorioUno * numAleatorioDos;
+                ivSigno.setImageResource(R.drawable.multiplicacion);
             }
+
             if(resultado >= 0){
                 for(int i = 0; i <numero.length; i++){
                     int id = getResources().getIdentifier(numero[i], "drawable", getPackageName());
@@ -140,12 +145,8 @@ public class activityNivel4 extends AppCompatActivity {
                 numAleatorio();
             }
         }else{
-            Intent i = new Intent(this, activityNivel5.class);
-            stringScore = String.valueOf(score);
-            stringVidas = String.valueOf(vidas);
-            i.putExtra("jugador",nombreJugador);
-            i.putExtra("score",stringScore);
-            i.putExtra("vidas",stringVidas);
+            Intent i = new Intent(this, MainActivity.class);
+            Toast.makeText(this, "Felicitaciones, acabaste todos los niveles", Toast.LENGTH_SHORT).show();
             startActivity(i);
             finish();
             mp.stop();

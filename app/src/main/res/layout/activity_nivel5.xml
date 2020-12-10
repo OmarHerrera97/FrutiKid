@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wallpaperprincipal"
-    tools:context=".activityNivel4">
+    tools:context=".activityNivel5">
 
     <TextView
         android:id="@+id/textView_nombre"
@@ -94,7 +94,7 @@
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toEndOf="@+id/imageView_NumUno"
         app:layout_constraintTop_toBottomOf="@+id/imageView_vidas"
-        app:srcCompat="@drawable/resta" />
+        app:srcCompat="@drawable/multiplicacion" />
 
     <EditText
         android:id="@+id/editTextResultado"

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FruitKid">
-        <activity android:name=".activityNivel4"></activity>
+        <activity android:name=".activityNivel6"></activity>
+        <activity android:name=".activityNivel5" />
+        <activity android:name=".activityNivel4" />
         <activity android:name=".activityNivel3" />
         <activity android:name=".activityNivel2" />
         <activity android:name=".activityNivel1" />
