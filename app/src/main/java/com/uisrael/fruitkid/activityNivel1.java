@@ -21,7 +21,7 @@ public class activityNivel1 extends AppCompatActivity {
     private MediaPlayer mp, mpGreat, mpBad;
     int score, numAleatorioUno, numAleatorioDos, resultado, vidas = 3;
     String nombreJugador, stringScore, stringVidas;
-    String numero [] = {"cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"}; //Llama las imagenes
+    String numero[] = {"cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"}; //Llama las imagenes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class activityNivel1 extends AppCompatActivity {
         ivAdos = findViewById(R.id.imageView_NumDos);
         etRespuesta = findViewById(R.id.editTextResultado);
         nombreJugador = getIntent().getStringExtra("jugador");
-        tvNombre.setText("Jugador: "+nombreJugador);
+        tvNombre.setText("Jugador: " + nombreJugador);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
@@ -45,29 +45,29 @@ public class activityNivel1 extends AppCompatActivity {
         mp.start();
         mp.setLooping(true);
 
-        mpGreat = MediaPlayer.create(this,R.raw.wonderful); // Solo lo declaramos
-        mpBad = MediaPlayer.create(this,R.raw.bad); // Solo lo declaramos
+        mpGreat = MediaPlayer.create(this, R.raw.wonderful); // Solo lo declaramos
+        mpBad = MediaPlayer.create(this, R.raw.bad); // Solo lo declaramos
 
         numAleatorio();
     }
 
-    public void comparar(View v){
+    public void comparar(View v) {
         String respuesta = etRespuesta.getText().toString();
-        if(!respuesta.equals("")){
+        if (!respuesta.equals("")) {
             int respuestaJugador = Integer.parseInt(respuesta);
-            if(resultado == respuestaJugador){
+            if (resultado == respuestaJugador) {
                 //Si esta bien la respuesta
                 mpGreat.start();
                 score++;
-                tvScore.setText("Score: " +score);
+                tvScore.setText("Score: " + score);
                 etRespuesta.setText("");
                 puntajeBase();
-            }else{
+            } else {
                 //Si esta mal la respuesta
                 mpBad.start();
                 vidas--;
                 puntajeBase();
-                switch(vidas){
+                switch (vidas) {
                     case 3:
                         //Manzanas----
                         ivVidas.setImageResource(R.drawable.tresvidas);
@@ -92,35 +92,36 @@ public class activityNivel1 extends AppCompatActivity {
                 etRespuesta.setText("");
             }
             numAleatorio();
-        }else{
+        } else {
             Toast.makeText(this, "Debes escribir tu respuesta..", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void numAleatorio(){
-        if(score <=9){
+    public void numAleatorio() {
+        if (score <= 9) {
             numAleatorioUno = (int) (Math.random() * 10);
             numAleatorioDos = (int) (Math.random() * 10);
             resultado = numAleatorioUno + numAleatorioDos;
-            if(resultado <= 10 ){
-                for(int i = 0; i <numero.length; i++){
+            if (resultado <= 10) {
+                for (int i = 0; i < numero.length; i++) {
                     int id = getResources().getIdentifier(numero[i], "drawable", getPackageName());
-                    if(numAleatorioUno == i){
+                    if (numAleatorioUno == i) {
                         ivAuno.setImageResource(id);
-                    }if(numAleatorioDos == i){
+                    }
+                    if (numAleatorioDos == i) {
                         ivAdos.setImageResource(id);
                     }
                 }
-            }else{
+            } else {
                 numAleatorio();
             }
-        }else{
+        } else {
             Intent i = new Intent(this, activityNivel2.class);
             stringScore = String.valueOf(score);
             stringVidas = String.valueOf(vidas);
-            i.putExtra("jugador",nombreJugador);
-            i.putExtra("score",stringScore);
-            i.putExtra("vidas",stringVidas);
+            i.putExtra("jugador", nombreJugador);
+            i.putExtra("score", stringScore);
+            i.putExtra("vidas", stringVidas);
             startActivity(i);
             finish();
             mp.stop();
@@ -128,32 +129,32 @@ public class activityNivel1 extends AppCompatActivity {
         }
     }
 
-     public void puntajeBase(){
+    public void puntajeBase() {
         //Apertura y escritura de la base de datos
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"BD", null,1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "BD", null, 1);
         SQLiteDatabase BD = admin.getWritableDatabase();
-        Cursor query = BD.rawQuery("select * from puntaje where score = (select max (score) from puntaje)",null);
-        if(query.moveToFirst()){ //hay respuesta de la base
+        /*Cursor query = BD.rawQuery("select * from puntaje where score = (select max (score) from puntaje)", null);
+        if (query.moveToFirst()) { //hay respuesta de la base
             String tempNombre = query.getString(0); //Columna 0 - 1
             String tempScore = query.getString(1);
             int bestScore = Integer.parseInt(tempScore);
-            if(score > bestScore){
+            if (score > bestScore) {
                 ContentValues modifi = new ContentValues();
-                modifi.put("nombre", nombreJugador);
+                 modifi.put("nombre", nombreJugador);
                 modifi.put("score", score);
-                BD.update("puntaje", modifi, "score=" +bestScore, null);
-            }
+                BD.update("puntaje", modifi, "score=" + bestScore, null);
+                }
             BD.close();
-        }else{
+        } else {*/
             ContentValues insert = new ContentValues();
             insert.put("nombre", nombreJugador);
             insert.put("score", score);
             BD.insert("puntaje", null, insert);
             BD.close();
         }
-     }
-     @Override
-     public void onBackPressed(){
 
-     }
+    @Override
+    public void onBackPressed() {
+
+    }
 }
