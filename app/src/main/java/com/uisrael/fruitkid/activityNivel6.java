@@ -46,6 +46,7 @@ public class activityNivel6 extends AppCompatActivity {
         tvScore.setText("Score: "+ score);
         //Recupermos las vidas del nivel 1
         stringVidas = getIntent().getStringExtra("vidas");
+
         vidas = Integer.parseInt(stringVidas);
         if(vidas == 3){
             ivVidas.setImageResource(R.drawable.tresvidas);
