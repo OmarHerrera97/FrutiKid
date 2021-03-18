@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void urlIns(View v){
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://drive.google.com/file/d/1QRnQK6UtkEmaCZ0NEhYHQN5eFtvp_y1y/view?usp=sharing"));
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://drive.google.com/drive/folders/1OajGaPEIEiIZd5SmAhOZr66SIJLc2Ysf?usp=sharing"));
         startActivity(i);
 
     }

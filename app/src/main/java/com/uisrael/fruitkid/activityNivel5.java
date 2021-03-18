@@ -47,6 +47,7 @@ public class activityNivel5 extends AppCompatActivity {
         stringVidas = getIntent().getStringExtra("vidas");
         vidas = Integer.parseInt(stringVidas);
         if (vidas == 3) {
+            //Vidas van bajando, depende a los errores.
             ivVidas.setImageResource(R.drawable.tresvidas);
         }
         if (vidas == 2) {
@@ -63,8 +64,8 @@ public class activityNivel5 extends AppCompatActivity {
         mp.start();
         mp.setLooping(true);
 
-        mpGreat = MediaPlayer.create(this, R.raw.wonderful); // Solo lo declaramos
-        mpBad = MediaPlayer.create(this, R.raw.bad); // Solo lo declaramos
+        mpGreat = MediaPlayer.create(this, R.raw.wonderful); // Solo lo declaramos, para despues usarlo.
+        mpBad = MediaPlayer.create(this, R.raw.bad); // Solo lo declaramos, para despues usarlo.
 
         numAleatorio();
     }
